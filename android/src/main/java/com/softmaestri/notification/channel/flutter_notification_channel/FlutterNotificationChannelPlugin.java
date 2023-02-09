@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.media.AudioAttributes;
 import android.net.Uri;
 import android.os.Build;
@@ -85,7 +86,7 @@ public class FlutterNotificationChannelPlugin implements FlutterPlugin, MethodCa
             if (customSound == null) {
               uri = Settings.System.DEFAULT_NOTIFICATION_URI;
             } else {
-              uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/raw/" + customSound);
+              uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ context.getApplicationContext().getPackageName() + "/raw/" + customSound);
             }
             Log.i(TAG, "Sound uri: " + uri.toString() + " \n");
             notificationChannel.setSound(uri, attributes);
